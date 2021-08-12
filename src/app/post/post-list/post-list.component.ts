@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { Post } from "../post.model";
 import { PostsService } from './../post.service';
@@ -8,7 +9,7 @@ import { PostsService } from './../post.service';
   templateUrl: './post-list.component.html',
   styleUrls: ['./post-list.component.css']
 })
-export class PostListComponent {
+export class PostListComponent implements OnInit {
   panelOpenState = false;
 
   // posts = [
@@ -17,11 +18,22 @@ export class PostListComponent {
   //   {title: 'third post', content: 'this is the 3 post\'s content...'},
   // ]
 
-  @Input() posts: Post[] = [];
+  // @Input() posts: Post[] = [];
+  posts: Post[] = [];
+  private postsSub: Subscription;
 
   constructor(public postsService: PostsService) { }
 
-  // ngOnInit(): void {
-  // }
+  ngOnInit(): void {
+    this.posts = this.postsService.getPosts();
+    this.postsSub = this.postsService.getPostUpdateListener()
+      .subscribe((posts: Post[]) => {
+        this.posts = posts;
+      });
+  }
+
+  ngOnDestroy() {
+    this.postsSub.unsubscribe();
+  }
 
 }
