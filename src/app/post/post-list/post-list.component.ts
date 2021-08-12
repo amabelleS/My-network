@@ -8,11 +8,13 @@ import { Component, OnInit } from '@angular/core';
 export class PostListComponent implements OnInit {
   panelOpenState = false;
 
-  posts = [
-    {title: 'first post', content: 'this is the post\'s content...'},
-    {title: 'second post', content: 'this is the sec post\'s content...'},
-    {title: 'third post', content: 'this is the 3 post\'s content...'},
-  ]
+  // posts = [
+  //   {title: 'first post', content: 'this is the post\'s content...'},
+  //   {title: 'second post', content: 'this is the sec post\'s content...'},
+  //   {title: 'third post', content: 'this is the 3 post\'s content...'},
+  // ]
+
+  posts = [];
 
   constructor() { }
 
