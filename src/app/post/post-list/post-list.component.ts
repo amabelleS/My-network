@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-post-list',
   templateUrl: './post-list.component.html',
   styleUrls: ['./post-list.component.css']
 })
-export class PostListComponent implements OnInit {
+export class PostListComponent {
   panelOpenState = false;
 
   // posts = [
@@ -14,11 +14,11 @@ export class PostListComponent implements OnInit {
   //   {title: 'third post', content: 'this is the 3 post\'s content...'},
   // ]
 
-  posts = [];
+  @Input() posts = [];
 
-  constructor() { }
+  // constructor() { }
 
-  ngOnInit(): void {
-  }
+  // ngOnInit(): void {
+  // }
 
 }
